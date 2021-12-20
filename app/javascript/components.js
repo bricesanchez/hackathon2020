@@ -2,4 +2,4 @@ function importAll(r) {
   r.keys().forEach(r)
 }
 
-importAll(require.context("../components", true, /[_\/]component\.js$/))
+importAll(require.context("../components", true, /[_\/]component_controller\.js$/))
