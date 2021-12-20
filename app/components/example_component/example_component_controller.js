@@ -13,4 +13,8 @@ export default class extends ApplicationController {
     console.log("hello")
     // add your code here, if applicable
   }
+
+  beforeReflex(element, reflex, noop, reflexId) {
+    console.log("before")
+  }
 }

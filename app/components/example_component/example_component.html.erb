@@ -1,4 +1,7 @@
-<div data-controller="example-component--example-component">
-test
+<div data-controller="example-component--example-component" data-key="<%= key %>">
+  <p><%= @count %></p>
+  <%= reflex_tag :increment, :button, "+1" %>
+  call regular reflex:
+  <button data-reflex="click->ExampleReflex#my_reflex_action">call regular reflex</button>
+  <div id="my-element"></div>
 </div>
-COMPONENT

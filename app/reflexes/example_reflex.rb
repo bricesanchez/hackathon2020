@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ExampleReflex < ApplicationReflex
+  def my_reflex_action
+    morph "#my-element", "coucou"
+  end
   # Add Reflex methods in this file.
   #
   # All Reflex instances include CableReady::Broadcaster and expose the following properties:
