@@ -178,6 +178,13 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    view_component (2.46.0)
+      activesupport (>= 5.0.0, < 8.0)
+      method_source (~> 1.0)
+    view_component_reflex (3.1.12)
+      rails (>= 5.2, < 7.0)
+      stimulus_reflex (>= 3.4.1)
+      view_component (>= 2.28.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -213,6 +220,8 @@ DEPENDENCIES
   turbo-rails
   turbolinks (~> 5)
   tzinfo-data
+  view_component
+  view_component_reflex
   web-console (>= 4.1.0)
   webpacker (~> 5.0)
 

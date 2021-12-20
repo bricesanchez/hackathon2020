@@ -27,7 +27,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'turbo-rails'
 gem 'stimulus_reflex'
-
+gem "view_component"
+gem 'view_component_reflex'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
