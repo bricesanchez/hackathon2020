@@ -1,4 +1,4 @@
 <%= component_controller do %>
   <div data-<%= self.class.stimulus_controller %>-target="data" data-value="<%= @data.to_json %>"></div>
-  <div id="graph">insert graph here</div>
+  <canvas data-<%= self.class.stimulus_controller %>-target="canvas" width="400" height="400">insert graph here</div>
 <% end %>
