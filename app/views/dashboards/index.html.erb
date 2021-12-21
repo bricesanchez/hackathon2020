@@ -1,5 +1,6 @@
 <% content_for :title, "Dashboard" %>
 
-<turbo-frame id="state-temp-graph" src="/dashboards/state_temperature">
+<a href="<%= state_temperatures_path %>"> go to dashboard page </a>
+<turbo-frame id="state-temp-graph" src="<%= state_temperatures_path %>">
   loading in progress...
 </turbo-frame>

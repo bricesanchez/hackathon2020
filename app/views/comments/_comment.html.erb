@@ -1,0 +1,13 @@
+
+<div id="<%=dom_id(comment)%>">
+  <div class="px-6 py-4 whitespace-nowrap">
+    <div class="flex items-center">
+      <div class="ml-4">
+        <div class="text-sm font-medium text-gray-900">
+          <%= comment.body %>
+          <%= link_to "dashboard link", link_to_dashboard(comment) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

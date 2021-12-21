@@ -1,0 +1,23 @@
+<turbo-frame id="state-temp-graph">
+  <%= render(ScatterPlotComponent.new(
+    model: StateTemperature, 
+    filters: @params,
+    available_filters: { country: :string, limit: :integer, from_recordedAt: :date, to_recordedAt: :date},
+    x_key: :recordedAt, 
+    y_key: :averageTemperature, 
+    group_by: :state)) %>
+</turbo-frame>
+
+
+<div class="mx-40">
+  <turbo-frame id="comment-form" src="<%= new_comment_path(associated_model: "StateTemperature", **@params) %>">
+  </turbo-frame>
+</div>
+
+    <div class="min-w-full divide-y divide-gray-200">
+      <div class="bg-white divide-y divide-gray-200">
+        <turbo-frame id="state-temperature-comments" target="_top">
+          <%= render @comments %>
+        </turbo-frame>
+      </div>
+    </div>

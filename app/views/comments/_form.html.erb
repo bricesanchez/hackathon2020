@@ -1,0 +1,13 @@
+<turbo-frame id="comment-form">
+<div >
+  <%= render partial: "comments/errors", locals: {comment: comment}%>
+  <%= form_with(model: comment, data: { controller: "comment-form"}) do |f| %>
+    <%= f.label :body %>
+    <%= f.rich_text_area :body, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md", data: { action: "input->comment-form#validate" } %>
+
+    <%= f.hidden_field :filters %>
+    <%= f.hidden_field :associated_model %>
+    <%= f.submit class: "rounded-lg px-4 py-2 bg-green-700 text-green-100 hover:bg-green-800 duration-300" %>
+  <% end %>
+  </div>
+</turbo-frame>
