@@ -1,0 +1,26 @@
+<%= form_with url: "", method: :get, data: { turbo_frame: @turbo_frame_id, turbo_action: "advance" } do |form| %>
+  <div class="grid grid-cols-6 gap-6">
+    <% if @page_count %>
+      <div class="col-span-6 sm:col-span-3">
+        <label for="price" class="block text-sm font-medium text-gray-700">Show</label>
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <%= form.select :count,
+            options_for_select([10, 25, 50, 100], selected: params[:count]), {}, {
+              onchange: "this.form.requestSubmit()",
+              class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+            } %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if @search %>
+      <div class="col-span-6 sm:col-span-3">
+        <label for="price" class="block text-sm font-medium text-gray-700">Search</label>
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <%= form.search_field :query, value: params[:query], oninput: "this.form.requestSubmit()",
+            class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

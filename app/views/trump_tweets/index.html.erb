@@ -1,0 +1,16 @@
+<% content_for :title, "Trump tweets" %>
+
+<%= render DatatableComponent.new(turbo_frame_id: :trump_tweets) do |c| %>
+  <% c.filter(turbo_frame_id: :trump_tweets, page_count: [10, 25, 50, 100], search: true) %>
+  <% c.headers(@trump_tweet_columns.map { |column_name| { name: column_name, sortable: true } }) %>
+
+  <% @trump_tweets.each do |trump_tweet| %>
+    <% c.row do %>
+      <% cache [trump_tweet, Time.now] do %>
+        <%= render TrumpTweetRowComponent.new(trump_tweet) %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% c.pagination(@pagy) %>
+<% end %>
