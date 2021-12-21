@@ -26,6 +26,7 @@ import {
   Tooltip,
   SubTitle
 } from 'chart.js';
+import ContextModuleFactory from 'webpack/lib/ContextModuleFactory';
 
 Chart.register(
   ArcElement,
@@ -58,9 +59,6 @@ Chart.register(
  */
 export default class extends ApplicationController {
   static targets = ["data", "canvas"]
-  initialize() {
-    console.log("init")
-  }
 
   connect () {
     super.connect()
