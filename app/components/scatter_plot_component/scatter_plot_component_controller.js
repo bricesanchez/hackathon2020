@@ -117,7 +117,7 @@ export default class extends ApplicationController {
       const current_data = []
       parsed_data[key].forEach(data => {
         current_data.push(
-          { x: Date.parse(data.x), y: parseFloat(data.y) }
+          { x: Date.parse(data.x)/1000/60/60/24/365 + 1970, y: parseFloat(data.y) }
         )
       })
       datasets.push({

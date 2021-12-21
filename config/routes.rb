@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   resources :state_temperatures
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'dashboards#index'
+  root 'state_temperatures#index'
 end
