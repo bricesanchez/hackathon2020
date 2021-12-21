@@ -27,6 +27,8 @@ import {
   SubTitle
 } from 'chart.js';
 
+import 'chartjs-adapter-date-fns';
+
 Chart.register(
   ArcElement,
   LineElement,
@@ -58,9 +60,13 @@ Chart.register(
  */
 export default class extends ApplicationController {
   static targets = ["data", "canvas"]
+  
 
-  connect () {
+  connect (){ 
     super.connect()
+    this.colors = ["#61615A", "#BA0900", "#6B7900", "#00C2A0", "#FFAA92", "#FF90C9", "#B903AA", "#D16100",
+  "#DDEFFF", "#000035", "#7B4F4B", "#A1C299", "#300018", "#0AA6D8", "#013349", "#00846F",
+  "#372101", "#FFB500", "#C2FFED", "#A079BF", "#CC0744", "#C0B9B2", "#C2FF99", "#001E09"]
     this.make_chart()
   }
 
@@ -72,10 +78,20 @@ export default class extends ApplicationController {
         datasets: datasets,
         options: {
           scales: {
-            xAxis: {
+            x: {
               // The axis for this scale is determined from the first letter of the id as `'x'`
               // It is recommended to specify `position` and / or `axis` explicitly.
               type: 'time',
+              time: {
+                time: {
+                  unit: 'year'
+                }
+              },
+
+              title: {
+                display: true,
+                text: 'Date'
+              }     
             }
           }
         }
@@ -95,6 +111,7 @@ export default class extends ApplicationController {
   buildData() {
     const datasets = []
     const parsed_data = JSON.parse(this.dataTarget.dataset.value)
+    let index = 0
     Object.keys(parsed_data).forEach(key => {
 
       const current_data = []
@@ -103,12 +120,12 @@ export default class extends ApplicationController {
           { x: Date.parse(data.x), y: parseFloat(data.y) }
         )
       })
-        
       datasets.push({
         label: key,
+        backgroundColor: this.colors[index],
         data: current_data,
-        xAxisID: 'xAxis'
       })
+      index += 1
     })
     return datasets
   }
