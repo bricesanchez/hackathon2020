@@ -1,5 +1,5 @@
 <%= form_with url: "", method: :get, data: { turbo_frame: @turbo_frame_id, turbo_action: "advance" } do |form| %>
-  <div class="grid grid-cols-6 gap-6">
+  <div class="grid grid-cols-6 gap-6 mb-5">
     <% if @page_count %>
       <div class="col-span-6 sm:col-span-3">
         <label for="price" class="block text-sm font-medium text-gray-700">Show</label>
