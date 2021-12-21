@@ -1,0 +1,11 @@
+<turbo-frame id="comment-form">
+  <%= render partial: "comments/errors", locals: {comment: comment}%>
+  <%= form_with(model: comment, data: { controller: "comment-form"}) do |f| %>
+    <%= f.label :body %>
+    <%= f.rich_text_area :body, data: { action: "input->comment-form#validate" } %>
+
+    <%= f.hidden_field :filters %>
+    <%= f.hidden_field :associated_model %>
+    <%= f.submit %>
+  <% end %>
+</turbo-frame>

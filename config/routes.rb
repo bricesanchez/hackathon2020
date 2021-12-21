@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-
   resources :trump_tweets, only: :index
+  resources :comments do
+    collection do
+      post :validate_new
+    end
+    post :validate_edit
+  end
   resources :dashboards
 
   resources :state_temperatures

@@ -1,10 +1,10 @@
 class StateTemperaturesController < ApplicationController
   def index
-    puts permitted_params
     if permitted_params.empty?
       redirect_to state_temperatures_path(default_params)
     end
     @params = permitted_params
+    @comments = Comment.where(associated_model: "StateTemperature")
   end
 
   private
@@ -14,6 +14,6 @@ class StateTemperaturesController < ApplicationController
   end
 
   def default_params
-     { country: "Canada", limit: 1000, from_recordedAt: "1990-01-01", to_recordedAt: "2020-01-01" } 
+     { country: "Canada", limit: 1000, from_recordedAt: "2010-01-01", to_recordedAt: "2020-01-01" } 
   end
 end

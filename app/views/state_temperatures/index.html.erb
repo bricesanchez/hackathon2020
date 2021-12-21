@@ -7,3 +7,15 @@
     y_key: :averageTemperature, 
     group_by: :state)) %>
 </turbo-frame>
+
+
+<div>
+  <turbo-frame id="state-temperature-comments" target="_top">
+    <%= render @comments %>
+  </turbo-frame>
+</div>
+
+<div>
+  <turbo-frame id="comment-form" src="<%= new_comment_path(associated_model: "StateTemperature", **@params) %>">
+  </turbo-frame>
+</div>
