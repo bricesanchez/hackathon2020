@@ -26,7 +26,6 @@ import {
   Tooltip,
   SubTitle
 } from 'chart.js';
-import ContextModuleFactory from 'webpack/lib/ContextModuleFactory';
 
 Chart.register(
   ArcElement,
@@ -62,8 +61,11 @@ export default class extends ApplicationController {
 
   connect () {
     super.connect()
+    this.make_chart()
+  }
+
+  make_chart() {
     const datasets = this.buildData()
-    console.log(datasets)
     this.chart = new Chart(this.canvasTarget.getContext('2d'), {
       type: "scatter",
       data: {
@@ -81,6 +83,15 @@ export default class extends ApplicationController {
     })
   }
 
+  afterReflex(element, reflex, noop, reflexId) {
+    this.chart.destroy()
+    this.make_chart()
+
+    const current_url = new URL(document.location)
+    current_url.searchParams.set(element.id, element.value)
+    history.pushState({}, '', current_url)
+  }
+
   buildData() {
     const datasets = []
     const parsed_data = JSON.parse(this.dataTarget.dataset.value)
@@ -88,7 +99,6 @@ export default class extends ApplicationController {
 
       const current_data = []
       parsed_data[key].forEach(data => {
-        console.log(Date.parse(data.x))
         current_data.push(
           { x: Date.parse(data.x), y: parseFloat(data.y) }
         )
@@ -101,13 +111,5 @@ export default class extends ApplicationController {
       })
     })
     return datasets
-  }
-
-  changeGraphFilter(event) {
-    
-  }
-
-  beforeReflex(element, reflex, noop, reflexId) {
-    console.log("before")
   }
 }

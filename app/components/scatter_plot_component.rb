@@ -1,15 +1,16 @@
 class ScatterPlotComponent < ViewComponentReflex::Component
-  def initialize(model:, filters:, x_key:, y_key:, group_by:)
+  def initialize(model:, available_filters:, filters:, x_key:, y_key:, group_by:)
     @model = model
     @filters = filters
     @group_by = group_by
     @x_key = x_key
     @y_key = y_key
+    @available_filters = available_filters
     get_data
   end
 
-  def change_filters(filters:)
-    @filters = filters
+  def change_filter
+    @filters[element.id.to_sym] = element.value
     get_data
   end
 
