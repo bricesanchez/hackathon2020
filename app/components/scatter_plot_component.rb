@@ -10,13 +10,15 @@ class ScatterPlotComponent < ViewComponentReflex::Component
   end
 
   def change_filter
-    @filters[element.id.to_sym] = element.value
+    @filters[element.id] = element.value
     get_data
   end
 
   def get_data
-    limit = @filters[:limit]
-    @data = @model.where(@filters.to_h.without(:limit)).limit(limit).group_by { |r| r.send(@group_by) }.transform_values { |temps| temps.map { |temp| { x: temp.send(@x_key), y: temp.send(@y_key) } } }
+    limit = @filters["limit"]
+    from_recordedAt = @filters["from_recordedAt"]
+    to_recordedAt = @filters["to_recordedAt"]
+    @data = @model.where(@filters.to_h.without("limit", "from_recordedAt", "to_recordedAt")).where(recordedAt: from_recordedAt..to_recordedAt).limit(limit).group_by { |r| r.send(@group_by) }.transform_values { |temps| temps.map { |temp| { x: temp.send(@x_key), y: temp.send(@y_key) } } }
   end
 
   def self.stimulus_controller

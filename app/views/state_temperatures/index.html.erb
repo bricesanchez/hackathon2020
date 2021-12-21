@@ -2,7 +2,7 @@
   <%= render(ScatterPlotComponent.new(
     model: StateTemperature, 
     filters: @params,
-    available_filters: {state: :string, country: :string, limit: :integer, recordedAt: :date},
+    available_filters: {state: :string, country: :string, limit: :integer, from_recordedAt: :date, to_recordedAt: :date},
     x_key: :recordedAt, 
     y_key: :averageTemperature, 
     group_by: :country)) %>
