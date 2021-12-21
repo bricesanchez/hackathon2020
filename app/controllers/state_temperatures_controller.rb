@@ -10,7 +10,7 @@ class StateTemperaturesController < ApplicationController
   private
 
   def permitted_params
-    params.permit([ :state, :country, :from_recordedAt, :to_recordedAt, :averageTemperature, :limit ])
+    params.permit([ :country, :from_recordedAt, :to_recordedAt, :averageTemperature, :limit ])
   end
 
   def default_params
