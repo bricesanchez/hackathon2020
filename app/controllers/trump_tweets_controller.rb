@@ -6,25 +6,18 @@ class TrumpTweetsController < ApplicationController
     @pagy, @trump_tweets = pagy @trump_tweets.reorder(sort_column => sort_direction), items: params.fetch(:count, 10)
   end
 
+  # GET 
   def pie_chart
-    puts "BONJOUUUUUUR"
     default_filters = { from_date: "2010-01-01", to_date: "2021-01-01", divider: 1}
     @filters = default_filters.merge(permitted_filters)
     divider = @filters[:divider].to_i
     trump_tweets = TrumpTweet.where(publishedAt: @filters[:from_date]..@filters[:to_date])
     @trump_tweets_per_slice = trump_tweets.group("(DATE_PART('hour', \"publishedAt\") / #{divider})").sum(:retweets).group_by { |k,v| k.to_i * divider }.transform_values { |v| v.sum { |h| h[1]} }
-    respond_to do |format|
-      format.html
-      format.turbo_stream {}
-    end
   end
 
+  # POST
   def update_chart
-    default_filters = { from_date: "2010-01-01", to_date: "2021-01-01", divider: 1}
-    @filters = default_filters.merge(permitted_filters)
-    divider = @filters[:divider].to_i
-    trump_tweets = TrumpTweet.where(publishedAt: @filters[:from_date]..@filters[:to_date])
-    @trump_tweets_per_slice = trump_tweets.group("(DATE_PART('hour', \"publishedAt\") / #{divider})").sum(:retweets).group_by { |k,v| k.to_i * divider }.transform_values { |v| v.sum { |h| h[1]} }
+    pie_chart
     respond_to do |format|
       format.turbo_stream
     end
