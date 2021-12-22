@@ -42,3 +42,13 @@ yarn-debug.log*
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+#notebook
+
+.ipynb
+*.ipynb
+
+#venv
+
+.venv
+/venv/
