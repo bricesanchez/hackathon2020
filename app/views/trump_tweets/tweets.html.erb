@@ -1,4 +1,4 @@
-<turbo-frame id="rows">
+<%= turbo_frame_tag :tweets do %>
   <%= render DatatableComponent.new(turbo_frame_id: :trump_tweets) do |c| %>
     <% c.headers(@trump_tweet_columns.map { |column_name| { name: column_name, sortable: true } }) %>
 
@@ -12,4 +12,4 @@
 
     <% c.pagination(@pagy) %>
   <% end %>
-</turbo-frame>
+<% end %>
