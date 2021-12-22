@@ -1,0 +1,6 @@
+<turbo-frame id="chart-canvas">  
+  <div data-controller="pie-chart">
+    <div data-pie-chart-target="data" data-value="<%= trump_tweets_per_slice.to_json %>"></div>
+    <canvas data-pie-chart-target="canvas" width="400" height="400">insert graph here</canvas>
+  </div>
+</turbo-frame>

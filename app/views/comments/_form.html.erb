@@ -1,5 +1,5 @@
 <turbo-frame id="comment-form">
-<div >
+<div>
   <%= render partial: "comments/errors", locals: {comment: comment}%>
   <%= form_with(model: comment, url: validate_new_comments_path()) do |f| %>
     <%= f.label :body %>

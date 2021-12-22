@@ -1,8 +1,6 @@
 class CommentsController < ApplicationController
   include CommentsHelper
 
-  skip_forgery_protection only: [:validate_new, :validate_edit]
-
   def new
     associated_model = params[:associated_model]
     @comment = Comment.new(associated_model: associated_model, filters: permitted_filters.to_h.to_json)

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "chart-canvas" do %>
+  <%= render partial: "trump_tweets/chart_canvas", locals: { trump_tweets_per_slice: @trump_tweets_per_slice }, format: :html %>
+<% end %>

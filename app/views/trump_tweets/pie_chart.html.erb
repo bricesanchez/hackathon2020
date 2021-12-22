@@ -1,0 +1,15 @@
+<turbo-frame id="pie-chart">
+  <%= form_with model: nil, method: "post", url: update_chart_trump_tweets_path, data: { controller: "pie-chart-form" } do |f| %>
+    <h3>retweets per hour range</h3>
+    
+    <%= f.label :from_date%>
+    <input type="date" data-action="input->pie-chart-form#submit" value="<%= @filters[:from_date] %>" id="from_date" name="from_date" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+    <%= f.label :to_date%>
+    <input type="date" data-action="input->pie-chart-form#submit" value="<%= @filters[:to_date] %>" id="to_date" name="to_date" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+    <%= f.label :divider%>
+    <input type="number" data-action="input->pie-chart-form#submit" value="<%= @filters[:divider] %>" id="divider" name="divider" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+
+    
+    <%= render partial: "trump_tweets/chart_canvas", locals: { trump_tweets_per_slice: @trump_tweets_per_slice } %>
+  <% end %>
+</turbo-frame>
