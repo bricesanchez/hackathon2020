@@ -1,0 +1,15 @@
+<turbo-frame id="rows">
+  <%= render DatatableComponent.new(turbo_frame_id: :trump_tweets) do |c| %>
+    <% c.headers(@trump_tweet_columns.map { |column_name| { name: column_name, sortable: true } }) %>
+
+    <% @trump_tweets.each do |trump_tweet| %>
+      <% c.row do %>
+        <% cache [trump_tweet, Time.now] do %>
+          <%= render TrumpTweetRowComponent.new(trump_tweet) %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% c.pagination(@pagy) %>
+  <% end %>
+</turbo-frame>

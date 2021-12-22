@@ -1,5 +1,10 @@
 class TrumpTweetsController < ApplicationController
   def index
+    @filters = params.permit(:query, :count)
+  end
+
+  # GET
+  def rows
     @trump_tweet_columns = [:id, :content, :link]
     @trump_tweets = TrumpTweet.order(created_at: :desc)
     @trump_tweets = @trump_tweets.search(params[:query]) if params[:query].present?
@@ -15,7 +20,7 @@ class TrumpTweetsController < ApplicationController
     @trump_tweets_per_slice = trump_tweets.group("(DATE_PART('hour', \"publishedAt\") / #{divider})").sum(:retweets).group_by { |k,v| k.to_i * divider }.transform_values { |v| v.sum { |h| h[1]} }
   end
 
-  # POST
+  # POST 
   def update_chart
     pie_chart
     respond_to do |format|

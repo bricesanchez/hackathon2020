@@ -1,5 +1,4 @@
 class DatatableComponent < ViewComponent::Base
-  renders_one :filter, DatatableFilterComponent
   renders_one :pagination, PaginationComponent
 
   renders_many :headers, "HeaderComponent"
